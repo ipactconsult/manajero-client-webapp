@@ -1,0 +1,182 @@
+.hero-section {
+    background-image: url("../../../assets/img/hero/hero-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.hero-img img {
+    width: 70%;
+}
+
+.hero-section .hero-content {
+    margin-bottom: 100px;
+}
+
+.hero-section .hero-content h1 {
+    font-size: 60px;
+    margin-bottom: 35px;
+    color: #9cbeef;
+}
+.hero-section .hero-content h2 {
+    color: #b9d2f6;
+}
+
+.hero-section .hero-content p {
+    margin-bottom: 40px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+@media (max-width: 767px) {
+    .hero-section {
+        padding-top: 130px;
+    }
+}@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .hero-section .hero-img {
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .hero-section .hero-img {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .hero-section .hero-img img {
+        width: 60%;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    .hero-section .hero-content p {
+        padding-right: 120px;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .hero-section .hero-content p {
+        padding-right: 70px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+    .hero-section .hero-content {
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .hero-section .hero-content h1 {
+        font-size: 52px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .hero-section .hero-content h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section .hero-content h1 {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .hero-section .hero-content h1 {
+        font-size: 42px;
+    }
+}
+.join-form{
+    margin-top: 10%;
+}
+
+.bs-stepper-circle{
+    background-color: #00498D;
+    font-size: 25px;
+}
+
+.bs-stepper-label{
+    font-family: 'Poppins',sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+.bs-stepper-content label {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+.bs-stepper-content input {
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #00498D ;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.btns{
+    display: flex;
+    justify-content: space-between;
+}
+.btn-previous{
+    background-color: #033a6e;
+    font-size: 20px;
+    color: #fff;
+}
+.btn-after{
+    background-color: #046ece;
+    font-size: 20px;
+    color: #fff;
+
+}
+@media (max-width: 480px)  {
+    .bs-stepper-circle{
+        font-size: 18px;
+    }
+    .bs-stepper-label{
+        font-size: 16px;
+    }
+    .bs-stepper-content label {
+        font-size: 15px;
+    }
+    .bs-stepper-content input {
+        font-size: 12px;
+    }
+    .btn-previous{
+        font-size: 13px;
+    }
+    .btn-after{
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px)  {
+    bs-stepper-circle{
+        font-size: 20px;
+    }
+    .bs-stepper-label{
+        font-size: 18px;
+    }
+    .bs-stepper-content label {
+        font-size: 16px;
+    }
+    .bs-stepper-content input {
+        font-size: 14px;
+    }
+    .btn-previous{
+        font-size: 15px;
+    }
+    .btn-after{
+        font-size: 15px;
+    }
+}

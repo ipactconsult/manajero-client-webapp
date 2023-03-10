@@ -1,0 +1,159 @@
+<app-header></app-header>
+<section id="home" class="hero-section">
+  <div class="container">
+    <div class="row position-relative">
+      <div class="col-lg-8">
+        <div class="hero-content">
+          <h1 class="wow fadeInUp" data-wow-delay=".4s">
+            Welcome to MANAJERO
+          </h1>
+          <br>
+          <br>
+          <p id="description2" class="wow fadeInUp" data-wow-delay=".6s">
+            Thank you for putting your trust and confidence in us.
+            We won’t settle for less than the best for you!
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+          <br>
+          <img src="../../../assets/img/partner.png" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container register ">
+    <div class="row mt-5 pt-5">
+      <div>
+        <div class="container">
+          <h1>Fill The Process</h1>
+          <div id="stepper1" class="bs-stepper">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">
+                    <span class="icon icon-light">
+                      <i title="Avatar" alt="logo-avatar" class="tim-icons icon-single-02"> </i>
+                    </span>
+                  </span>
+                  <span class="bs-stepper-label">Email</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">
+                    <span class="icon icon-light">
+                      <i title="Lock" alt="logo-lock" class="tim-icons icon-lock-circle "> </i>
+                    </span>
+                  </span>
+                  <span class="bs-stepper-label">Password</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">
+                    <span class="icon icon-light">
+                      <i title="Lock" alt="logo-lock" class="tim-icons icon-lock-circle "> </i>
+                    </span>
+                  </span>
+                  <span class="bs-stepper-label">Confirm Password</span>
+                </button>
+              </div>
+            </div>
+            <div class="bs-stepper-content">
+              <form (ngSubmit)="callRegister()" [formGroup]="formRegister">
+                <div id="test-l-1" class="content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="email">Email</label>
+                      <input  name="email" id="email" formControlName="email" type="text" class="form-control"
+                       disabled
+                       placeholder="Enter Field" />
+                    </div>
+                   
+                  </div>
+                  
+                  
+                
+                </div>
+                <div id="test-l-2" class="content">
+                  <div class="row">
+                   
+                      <div class="col-md-12">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control"
+                        name="password" id="password" formControlName="password"
+                         placeholder="Enter Field" />
+                      </div>
+                  </div>
+                </div>
+                <div id="test-l-3" class="content ">
+                  
+                    <div class="row">
+                   
+                        <div class="col-md-12">
+                          <label for="cfPassword">Confirm Password</label>
+                          <input (change)="compare()" type="password" class="form-control"
+                          name="cfPassword" id="cfPassword" formControlName="cfPassword"
+                           placeholder="Enter Field" />
+                        </div>
+                    </div>
+                    <div *ngIf="!isMatch">
+                      <p class="text-danger">Mismatch Password</p>
+                    </div>
+
+                  <div class="mt-2 btns">
+                    <div>
+                    </div>
+                    <div>
+                      <button [disabled]="formRegister.invalid && !isMatch"  type="submit" class="btn btn-after">
+                        Confirm Sign In
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+ 
+</div>
+
+<div
+class="modal" style="background-color: #171941;opacity:0.98"
+tabindex="-1"
+
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-dialog mt-5"  role="document">
+  <div class="modal-content mt-5" style="border: 2px solid #171941; border-radius: 20px;">
+    <div class="modal-header">
+      <h4 class="modal-title">Token Expired</h4>
+    </div>
+    <div class="modal-body">
+      <p>
+        Sorry !! The Session Has Been Expired , Click On The Button To Recieve A New Link.
+      </p>
+      
+
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+          <button (click)="callEmail()" class="btn btn-secondary mx-2 float-right">
+            Re-generate Session</button>
+      </div>
+    </div>
+  
+  </div>
+</div>
+</div>
+
+<app-footer></app-footer>

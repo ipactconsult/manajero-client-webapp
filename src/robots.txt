@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://manazello-client-app.vercel.app/#/sitemap.xml

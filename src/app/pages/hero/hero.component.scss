@@ -1,0 +1,111 @@
+.hero-section {
+  background-image: url("../../../assets/img/hero/hero-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero-img img {
+  width: 100%;
+}
+
+.hero-section .hero-content {
+  margin-bottom: 100px;
+}
+
+.hero-section .hero-content h1 {
+  font-size: 60px;
+  margin-bottom: 35px;
+  color: #9cbeef;
+}
+.hero-section .hero-content h2 {
+  color: #b9d2f6;
+}
+
+.hero-section .hero-content p {
+  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+.hero-section .hero-content .main-btn {
+  border-color: #b9d2f6;
+  background-color: #b9d2f6;
+  color: #00498D;
+}
+
+
+.hero-section .hero-content .main-btn:hover {
+  border-color: #4182e5;
+  background-color: #4182e5;
+  color: #b9d2f6;
+}
+
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .hero-section {
+    padding-top: 130px;
+  }
+}@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-section .hero-img {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-section .hero-img {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-section .hero-img img {
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .hero-section .hero-content p {
+    padding-right: 120px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .hero-section .hero-content p {
+    padding-right: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-section .hero-content {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .hero-section .hero-content h1 {
+    font-size: 52px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .hero-section .hero-content h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section .hero-content h1 {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .hero-section .hero-content h1 {
+    font-size: 42px;
+  }
+}

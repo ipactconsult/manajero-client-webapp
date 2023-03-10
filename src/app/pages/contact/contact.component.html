@@ -1,0 +1,67 @@
+<section id="contact" class="subscribe-section pt-120">
+    <div class="container">
+        <h2 id="contactTitle" class="mb-25 wow fadeInUp text-center" data-wow-delay=".2s">Contact Us</h2>
+        <div class="subscribe-wrapper img-bg wow fadeInUp">
+            <div class="row align-items-center">
+                <form action="#" class="subscribe-form wow fadeInUp">
+                    <div class="contact-wrapper">
+                        <input
+                                type="text"
+                                name="subs-fname"
+                                id="subs-fname"
+                                placeholder="First Name"
+                        />
+                        <input
+                                type="text"
+                                name="subs-lname"
+                                id="subs-lname"
+                                placeholder="Last Name"
+                        />
+                    </div>
+                    <input
+                            type="text"
+                            name="subs-company"
+                            id="subs-company"
+                            placeholder="Company Name"
+                    />
+                    <div class="contact-wrapper">
+                        <input
+                                type="text"
+                                name="subs-website"
+                                id="subs-website"
+                                placeholder="Website"
+                        />
+                        <input
+                                type="text"
+                                name="subs-phone"
+                                id="subs-phone"
+                                placeholder="Phone Number"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                        />
+                    </div>
+                    <input
+                            type="email"
+                            name="subs-email"
+                            id="subs-email"
+                            placeholder="Email"
+                    />
+
+                    <input
+                            type="text"
+                            name="subs-subject"
+                            id="subs-subject"
+                            placeholder="Message Subject"
+                    />
+                    <textarea
+                            name="subs-message"
+                            id="subs-message"
+                            placeholder="Message"
+                    ></textarea>
+                    <button type="submit" class="main-btn btn-hover" id="btnSubmit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

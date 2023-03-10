@@ -1,0 +1,249 @@
+/* ===== about css ====== */
+.about-section {
+  margin-top: 10%;
+  position: relative;
+  z-index: 1;
+}
+.about-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+.about-section h3{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+}
+.about-section h3{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+}
+.about-section .about-img {
+  position: relative;
+  z-index: 1;
+  padding: 75px 0;
+}
+
+.about-section .about-img .shape {
+  position: absolute;
+  z-index: -1;
+}
+
+.about-section .about-img .shape.shape-1 {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -70px;
+}
+
+
+.about-section .about-img-2 {
+  position: relative;
+  z-index: 1;
+  padding: 75px 0;
+}
+
+.about-section .about-img-2 .shape {
+  position: absolute;
+  z-index: -1;
+}
+
+.about-section .about-img-2 .shape.shape-1 {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: -70px;
+}
+
+
+@media (max-width: 767px) {
+  .about-section.pt-150 {
+    padding-top: 100px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .about-section .about-img {
+    margin-bottom: 70px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .about-section .about-img .shape.shape-1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section .about-img .shape.shape-1 {
+    width: 70%;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .about-section .about-img-2 {
+    margin-bottom: 70px;
+    margin-right: 5%;
+  }
+}
+@media (max-width: 767px) {
+  .about-section .about-img-2 {
+    margin-right: 20%;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .about-section .about-img-2 .shape.shape-1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section .about-img-2 .shape.shape-1 {
+    width: 70%;
+  }
+}
+
+
+
+
+/* ====== feature css ====== */
+
+.feature-section {
+  margin-top: 10%;
+}
+.feature-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.feature-section .single-feature {
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.feature-section .single-feature .icon {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(88, 100, 255, 0.1);
+  color: #0f5599;
+  margin: auto auto 30px;
+  font-size: 65px;
+  line-height: 1;
+}
+
+.feature-section .single-feature .content h3 {
+  margin-bottom: 20px;
+}
+
+.feature-section .single-feature .content p {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+
+@media (max-width: 767px) {
+  .feature-section.pt-120 {
+    padding-top: 80px;
+  }
+}
+
+
+@media only screen and (min-width: 1400px) {
+  .feature-section .single-feature {
+    padding: 30px 40px;
+  }
+}
+
+// common css
+
+.section-title p {
+  font-size: 18px;
+  line-height: 28px;
+}
+.about-section .about-content ul {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  list-style-type: disc;
+  color: #162447;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .section-title h2 {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .section-title h2 {
+    font-size: 35px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .section-title h2 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .section-title h2 {
+    font-size: 28px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .section-title h2 {
+    font-size: 32px;
+  }
+}
+.section-title span {
+  font-size: 25px;
+  color: #162447;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .section-title span {
+    font-size: 18px;
+  }
+}
+
+.section-title span img {
+  max-width: 100%;
+  margin-right: 20px;
+}
+
+
+@media (max-width: 767px) {
+
+  .feature-section h3 {
+    font-size: 22px;
+  }
+  .about-section h2 {
+    font-size: 28px;
+  }
+  .about-section h3{
+    font-size: 25px;
+  }
+  .about-section h4{
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+  .feature-section h3 {
+    font-size: 28px;
+  }
+  .about-section h2 {
+    font-size: 32px;
+  }
+  .about-section h3{
+    font-size: 28px;
+  }
+  .about-section h4{
+    font-size: 25px;
+  }
+}
