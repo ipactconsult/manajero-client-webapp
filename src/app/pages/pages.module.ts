@@ -31,6 +31,7 @@ import { OurServicesComponent } from './our-services/our-services.component';
 import { SdgComponent } from './sdg/sdg.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 @NgModule({
   imports: [
     CommonModule,
@@ -52,6 +53,7 @@ import { FooterComponent } from './footer/footer.component';
     BsDatepickerModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
+    NgxCaptchaModule
 
 
   ],
@@ -71,7 +73,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     JoinUsComponent,
-    HomeComponent
+    HomeComponent,
   ],
   providers: []
 })

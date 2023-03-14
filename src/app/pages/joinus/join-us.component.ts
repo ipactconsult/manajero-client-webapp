@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import {Component, OnInit, OnDestroy, HostListener, ViewChild} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,7 +8,9 @@ import {
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
+import {RentalRequestService} from '../services/RentalRequest/rental-request.service';
+import {environment} from '../../../environments/environment';
+import { ReCaptcha2Component } from 'ngx-captcha';
 
 @Component({
   selector: 'app-joinus',
@@ -17,18 +19,30 @@ import { UserService } from '../services/user.service';
 })
 export class JoinUsComponent implements OnInit, OnDestroy {
   registerform: FormGroup;
-  enable = false;
   private stepper: Stepper;
+  showValidationError = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService,private toastr: ToastrService) {
+  @ViewChild('captchaElem') captchaElem: ReCaptcha2Component;
+  public captchaIsLoaded = false;
+  public captchaReset = false;
+  public captchaSucess = false;
+  public captchaIsExpired = false;
+  public captchaResponse? : string;
+  public captchaTheme: 'light' | 'dark' = 'light';
+  public captchaSize: 'compact' | 'normal' = 'normal';
+  public captchaLang =  'en';
+  public captchaType : 'image' | 'audio';
+  recaptchaSecret: string = environment.captchaKey;
+
+  constructor(private fb: FormBuilder, private rentalService: RentalRequestService, private toastr: ToastrService) {
     const formcontrols = {
       firstName: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
+        Validators.pattern(/^[\p{L}'-]+$/u),
       ]),
       lastName: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
+        Validators.pattern(/^[\p{L}'-]+$/u),
       ]),
       email: new FormControl('', [
         Validators.required,
@@ -37,46 +51,39 @@ export class JoinUsComponent implements OnInit, OnDestroy {
       secondEmail: new FormControl('', [
         Validators.email,
       ]),
-
       phone: new FormControl('', [
         Validators.required,
+        Validators.pattern(/^\+(?:[0-9] ?){6,14}[0-9]$/)
       ]),
-      secondPhone: new FormControl(''),
-
+      secondPhone: new FormControl('', [
+        Validators.pattern(/^\+(?:[0-9] ?){6,14}[0-9]$/)
+      ]),
       matriculateFiscal: new FormControl('', [
         Validators.required,
       ]),
       company: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
       ]),
       address: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
       ]),
       country: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
+        Validators.pattern(/^[\p{L}'-]+$/u),
       ]),
       city: new FormControl('', [
         Validators.required,
-        Validators.pattern('[A-Za-z.\'-]+'),
+        Validators.pattern(/^[\p{L}'-]+$/u),
       ]),
       postalCode: new FormControl('', [
         Validators.required,
       ]),
-      webSiteLink: new FormControl('', [
-        Validators.pattern('[A-Za-z.\'-]+')
-      ]),
-      linkedinUrl: new FormControl('', [
-        Validators.pattern('[A-Za-z.\'-]+')
-      ]),
-
+      webSiteLink: new FormControl('', []),
+      linkedinUrl: new FormControl('', []),
+      recaptcha: new FormControl('', [Validators.required])
     };
-      this.registerform = this.fb.group(formcontrols);
-
+    this.registerform = this.fb.group(formcontrols);
   }
-
 
   get firstName(){
     return this.registerform.get('firstName');
@@ -134,9 +141,30 @@ export class JoinUsComponent implements OnInit, OnDestroy {
     return this.registerform.get('webSiteLink');
   }
 
-  next()
+  stepOwnerIsInvalid() : boolean{
+    return this.firstName.invalid || this.lastName.invalid || this.email.invalid || this.phone.invalid;
+  }
+  stepCompanyIsInvalid() : boolean {
+    return this.matriculateFiscal.invalid || this.company.invalid || this.country.invalid || this.city.invalid || this.postalCode.invalid
+  }
+
+  next(step : string)
   {
-    this.stepper.next();
+    if (step === 'company'){
+      if (this.stepOwnerIsInvalid()) {
+        this.showValidationError = true;
+      }else {
+        this.showValidationError = false;
+        this.stepper.next();
+      }
+    } else if (step === 'additional'){
+      if (this.stepCompanyIsInvalid()) {
+        this.showValidationError = true;
+      }else {
+        this.showValidationError = false;
+        this.stepper.next();
+      }
+    }
   }
 
   previous(){
@@ -149,17 +177,28 @@ export class JoinUsComponent implements OnInit, OnDestroy {
       animation: true
     })
   }
+
   register(): void {
-
-     const  user:User=this.registerform.value
-      this.userService.sendRequest(user).subscribe(res => {
-
-        this.toastr.success('Your request sent successfully!', 'toast-success');
+     const  user:User=this.registerform.value;
+      this.rentalService.sendRequest(user).subscribe(res => {
+        this.toastr.success('Your request sent successfully!', 'Success');
       },err => {
-        this.toastr.error(err.error.error, 'toast-error');
-
-
+        this.toastr.error('Something went wrong', 'Error');
       });
+  }
+
+  handleCaptchaSuccess(result){
+    this.captchaSucess = !!result;
+    this.captchaResponse = this.captchaSucess ? result : null;
+  }
+  handleCaptchaReset(){
+    this.captchaReset = true;
+  }
+  handleCaptchaExpire(){
+    this.captchaIsExpired = true;
+  }
+  handleCaptchaLoad(){
+    this.captchaIsLoaded = true;
   }
   ngOnDestroy() {}
 }

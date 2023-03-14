@@ -55,7 +55,7 @@
               </div>
               <div class="line"></div>
               <div class="step" data-target="#test-l-3">
-                <button class="step-trigger">
+                <button class="step-trigger" [disabled]="(stepPasswordIsInvalid())">
                   <span class="bs-stepper-circle">
                     <span class="icon icon-light">
                       <i title="Lock" alt="logo-lock" class="tim-icons icon-lock-circle "> </i>
@@ -67,56 +67,73 @@
             </div>
             <div class="bs-stepper-content">
               <form (ngSubmit)="callRegister()" [formGroup]="formRegister">
+                <p>(&#42;) Mandatory fields</p>
                 <div id="test-l-1" class="content">
                   <div class="row">
                     <div class="col-md-12">
-                      <label for="email">Email</label>
+                      <label for="email">Email&#42;</label>
                       <input  name="email" id="email" formControlName="email" type="text" class="form-control"
                        disabled
                        placeholder="Enter Field" />
                     </div>
-                   
                   </div>
-                  
-                  
-                
                 </div>
                 <div id="test-l-2" class="content">
                   <div class="row">
-                   
                       <div class="col-md-12">
-                        <label for="password">Password</label>
+                        <label for="password">Password&#42;</label>
                         <input type="password" class="form-control"
                         name="password" id="password" formControlName="password"
                          placeholder="Enter Field" />
+                        <div *ngIf="(password.invalid && password.touched)" class="col-lg-12">
+                          <div *ngIf="password.errors?.required">
+                            <p class="mt-2 text-danger">Required Field</p>
+                          </div>
+                          <div *ngIf="password.errors?.pattern" class="w-100">
+                            <p class="mt-2 text-danger">Password must contain at least 8 characters with 1 Uppercase letter and 1 number</p>
+                          </div>
+                        </div>
                       </div>
                   </div>
                 </div>
                 <div id="test-l-3" class="content ">
-                  
                     <div class="row">
-                   
                         <div class="col-md-12">
-                          <label for="cfPassword">Confirm Password</label>
-                          <input (change)="compare()" type="password" class="form-control"
+                          <label for="cfPassword">Confirm Password&#42;</label>
+                          <input type="password" class="form-control"
                           name="cfPassword" id="cfPassword" formControlName="cfPassword"
                            placeholder="Enter Field" />
+                          <div *ngIf="(cfPassword.invalid && cfPassword.touched)" class="col-lg-12">
+                            <div *ngIf="cfPassword.errors?.required">
+                              <p class="mt-2 text-danger">Required Field</p>
+                            </div>
+                            <div *ngIf="cfPassword.errors?.confirmedValidator">
+                              <p class="text-danger">Passwords did not match</p>
+                            </div>
+                          </div>
                         </div>
                     </div>
-                    <div *ngIf="!isMatch">
-                      <p class="text-danger">Mismatch Password</p>
-                    </div>
-
                   <div class="mt-2 btns">
+                    <ngx-recaptcha2
+                            #captchaElem
+                            [siteKey]="recaptchaSecret"
+                            [size]="captchaSize"
+                            [hl]="captchaLang"
+                            [type]="captchaType"
+                            [theme]="captchaTheme"
+                            (success)="handleCaptchaSuccess($event)"
+                            (reset)="handleCaptchaReset()"
+                            (expire)="handleCaptchaExpire()"
+                            (load)="handleCaptchaLoad()"
+                            formControlName="recaptcha"
+                    >
+                    </ngx-recaptcha2>
                     <div>
-                    </div>
-                    <div>
-                      <button [disabled]="formRegister.invalid && !isMatch"  type="submit" class="btn btn-after">
-                        Confirm Sign In
+                      <button [disabled]="formRegister.invalid"  type="submit" class="btn btn-after">
+                        Confirm Registration
                       </button>
                     </div>
                   </div>
-
                 </div>
               </form>
             </div>
@@ -124,36 +141,30 @@
         </div>
       </div>
     </div>
-    
- 
 </div>
 
-<div
-class="modal" style="background-color: #171941;opacity:0.98"
-tabindex="-1"
-
-[ngStyle]="{'display':displayStyle}">
-<div class="modal-dialog mt-5"  role="document">
-  <div class="modal-content mt-5" style="border: 2px solid #171941; border-radius: 20px;">
-    <div class="modal-header">
-      <h4 class="modal-title">Token Expired</h4>
-    </div>
-    <div class="modal-body">
-      <p>
-        Sorry !! The Session Has Been Expired , Click On The Button To Recieve A New Link.
-      </p>
-      
-
-    </div>
-    <div class="modal-footer">
-      <div class="row">
-          <button (click)="callEmail()" class="btn btn-secondary mx-2 float-right">
-            Re-generate Session</button>
+<div class="modal" style="background-color: #171941;opacity:0.98"
+     tabindex="-1"
+     [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog mt-5" role="document">
+    <div class="modal-content mt-5" style="border: 2px solid #171941; border-radius: 20px;">
+      <div class="modal-header">
+        <h4 class="modal-title">Token Expired</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Sorry !! The Session Has Been Expired , Click On The Button To Recieve A New Link.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <button (click)="callEmailRefresh()" class="btn btn-secondary mx-2 float-right">
+            Re-generate Session
+          </button>
+        </div>
       </div>
     </div>
-  
   </div>
-</div>
 </div>
 
 <app-footer></app-footer>

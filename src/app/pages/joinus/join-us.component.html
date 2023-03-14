@@ -31,47 +31,47 @@
                 <div class="bs-stepper-header">
                     <div class="step" data-target="#test-l-1">
                         <button class="step-trigger">
-                <span class="bs-stepper-circle">
-                  <span class="icon icon-light">
-                    <i title="Avatar" class="tim-icons icon-single-02"> </i>
-                  </span>
-                </span>
+                            <span class="bs-stepper-circle">
+                                <span class="icon icon-light">
+                                    <i title="Avatar" class="tim-icons icon-single-02"> </i>
+                                </span>
+                             </span>
                             <span class="bs-stepper-label">Owner</span>
                         </button>
                     </div>
                     <div class="line"></div>
                     <div class="step" data-target="#test-l-2">
-                        <button class="step-trigger">
-                <span class="bs-stepper-circle">
-                  <span class="icon icon-light">
-                    <i title="Company" class="tim-icons icon-book-bookmark"> </i>
-                  </span>
-                </span>
+                        <button class="step-trigger" [disabled]="(stepOwnerIsInvalid())">
+                            <span class="bs-stepper-circle">
+                                <span class="icon icon-light">
+                                    <i title="Company" class="tim-icons icon-book-bookmark"> </i>
+                                 </span>
+                            </span>
                             <span class="bs-stepper-label">Company</span>
                         </button>
                     </div>
                     <div class="line"></div>
                     <div class="step" data-target="#test-l-3">
-                        <button class="step-trigger">
-                <span class="bs-stepper-circle">
-                  <span class="icon icon-light">
-                    <i title="Additional" class="tim-icons icon-simple-add"> </i>
-                  </span>
-                </span>
+                        <button class="step-trigger" [disabled]="(stepCompanyIsInvalid() || stepOwnerIsInvalid())">
+                            <span class="bs-stepper-circle">
+                                <span class="icon icon-light">
+                                    <i title="Additional" class="tim-icons icon-simple-add"> </i>
+                                </span>
+                            </span>
                             <span class="bs-stepper-label">Additional</span>
                         </button>
                     </div>
                 </div>
                 <div class="bs-stepper-content">
                     <form (ngSubmit)="register()" [formGroup]="registerform">
+                        <p>(&#42;) Mandatory fields</p>
                         <div id="test-l-1" class="content">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="firstname">First Name</label>
+                                    <label for="firstname">First Name&#42;</label>
                                     <input type="text" class="form-control"
                                            formControlName="firstName" name="firstName"
                                            id="firstName" placeholder="Enter first name"/>
-
                                     <div *ngIf="(firstName.invalid && firstName.touched)" class="col-lg-12">
                                         <div *ngIf="firstName.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
@@ -81,9 +81,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
-                                    <label for="lastname">Last Name</label>
+                                    <label for="lastname">Last Name&#42;</label>
                                     <input type="text" class="form-control"
                                            formControlName="lastName" name="lastName"
                                            id="lastName" placeholder="Enter Last name"/>
@@ -97,14 +96,12 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputEmail1">Email address</label>
+                                    <label for="exampleInputEmail1">Email address&#42;</label>
                                     <input type="email" class="form-control"
                                            formControlName="email" name="email"
                                            id="exampleInputEmail1" placeholder="Enter email"/>
-
                                     <div *ngIf="(email.invalid && email.touched)" class="col-lg-12">
                                         <div *ngIf="email.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
@@ -113,63 +110,59 @@
                                             <p class="mt-2 text-danger">You Should Enter A Valid Email</p>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6">
                                     <label for="secondEmail">Second Email address (Optional)</label>
                                     <input type="email" class="form-control "
                                            formControlName="secondEmail" name="secondEmail"
                                            id="secondEmail" placeholder="Enter email (Optional)"/>
-
                                     <div *ngIf="(secondEmail.invalid && secondEmail.touched)" class="col-lg-12">
-
                                         <div *ngIf="secondEmail.errors?.email" class="w-100">
                                             <p class="mt-2 text-danger">You Should Enter A Valid Email</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="phone">Phone Number</label>
-
+                                    <label for="phone">Phone Number&#42;</label>
                                     <input type="text" class="form-control " id="phone"
                                            formControlName="phone" name="phone"
                                            placeholder="Enter Phone Number"/>
-
                                     <div *ngIf="(phone.invalid && phone.touched)" class="col-lg-12">
                                         <div *ngIf="phone.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
                                         </div>
-
+                                        <div *ngIf="phone.errors?.pattern">
+                                            <p class="mt-2 text-danger">You Should Enter A Valid Phone Number</p>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6">
                                     <label for="secondPhone">Second Phone Number (Optional)</label>
                                     <input type="text" class="form-control " id="secondPhone"
                                            formControlName="secondPhone" name="secondPhone"
                                            placeholder="Enter Phone Number (Optional)"/>
-
                                     <div *ngIf="(secondPhone.invalid && secondPhone.touched)" class="col-lg-12">
                                         <div *ngIf="secondPhone.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
+                            <div class="validation-msg" *ngIf="((stepOwnerIsInvalid()) && showValidationError == true)">
+                                <i class="lni lni-warning validation-msg"></i>
+                                <span>
+                                    <p>&#160;&#160;Please complete all required fields before advancing to the next step !</p>
+                                </span>
+                            </div>
                             <div class="mt-2 btns">
+                                <div></div>
                                 <div>
-                                </div>
-                                <div>
-                                    <a class="btn btn-after" (click)="next()">
-                        <span class="icon icon-light">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </span>
+                                    <a class="btn btn-after" (click)="next('company')">
+                                        <span class="icon icon-light">
+                                            <i class="tim-icons icon-minimal-right"></i>
+                                        </span>
                                     </a>
                                 </div>
                             </div>
@@ -177,7 +170,7 @@
                         <div id="test-l-2" class="content">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="matriculateFiscal">Tax Registration Number</label>
+                                    <label for="matriculateFiscal">Tax Registration Number&#42;</label>
                                     <input type="text" class="form-control "
                                            formControlName="matriculateFiscal" name="matriculateFiscal"
                                            id="matriculateFiscal" placeholder="Enter Tax Number"/>
@@ -187,11 +180,10 @@
                                         <div *ngIf="matriculateFiscal.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="company">Company Name</label>
+                                    <label for="company">Company Name&#42;</label>
                                     <input type="text" class="form-control "
                                            formControlName="company" name="company"
                                            id="company" placeholder="Enter Company"/>
@@ -207,11 +199,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="country">Country</label>
+                                    <label for="country">Country&#42;</label>
                                     <input type="text" class="form-control "
                                            formControlName="country" name="country"
                                            id="country" placeholder="Enter Country"/>
-
                                     <div *ngIf="(country.invalid && country.touched)" class="col-lg-12">
                                         <div *ngIf="country.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
@@ -220,14 +211,12 @@
                                             <p class="mt-2 text-danger">Only Caracters Can Be Accepted</p>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="city">City</label>
+                                    <label for="city">City&#42;</label>
                                     <input type="text" class="form-control "
                                            formControlName="city" name="city"
                                            id="city" placeholder="Enter City"/>
-
                                     <div *ngIf="(city.invalid && city.touched)" class="col-lg-12">
                                         <div *ngIf="city.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
@@ -236,16 +225,14 @@
                                             <p class="mt-2 text-danger">Only Caracters Can Be Accepted</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mt-0">
-                                    <label for="address">Address</label>
+                                    <label for="address">Address&#42;</label>
                                     <input placeholder="Enter address" class="form-control "
                                            formControlName="address"
                                            name="address" id="address"/>
-
                                     <div *ngIf="(address.invalid && address.touched)" class="col-lg-12">
                                         <div *ngIf="address.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
@@ -254,42 +241,42 @@
                                             <p class="mt-2 text-danger">Only Caracters Can Be Accepted</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="postalCode">Postal Code</label>
+                                    <label for="postalCode">Postal Code&#42;</label>
                                     <input type="text" class="form-control "
                                            formControlName="postalCode" name="postalCode" id="postalCode"
                                            placeholder="Enter Postal Code"/>
-
                                     <div *ngIf="(postalCode.invalid && postalCode.touched)" class="col-lg-12">
                                         <div *ngIf="postalCode.errors?.required">
                                             <p class="mt-2 text-danger">Required Field</p>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
+                            <div class="validation-msg" *ngIf="((stepCompanyIsInvalid()) && showValidationError == true)">
+                                <i class="lni lni-warning validation-msg"></i>
+                                <span>
+                                    <p>&#160;&#160;Please complete all required fields before advancing to the next step !</p>
+                                </span>                            </div>
                             <div class="mt-2 btns">
                                 <div>
                                     <a class="btn btn-previous" (click)="previous()">
-                      <span class="icon icon-info">
-                        <i class="tim-icons icon-minimal-left"></i>
-                      </span>
+                                        <span class="icon icon-info">
+                                            <i class="tim-icons icon-minimal-left"></i>
+                                        </span>
                                     </a>
                                 </div>
                                 <div>
-                                    <a class="btn btn-after" (click)="next()">
-                        <span class="icon icon-light">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </span>
+                                    <a class="btn btn-after" (click)="next('additional')">
+                                         <span class="icon icon-light">
+                                            <i class="tim-icons icon-minimal-right"></i>
+                                         </span>
                                     </a>
                                 </div>
                             </div>
-
                         </div>
                         <div id="test-l-3" class="content ">
                             <div class="row">
@@ -298,12 +285,10 @@
                                     <input type="text" class="form-control "
                                            formControlName="webSiteLink" name="webSiteLink"
                                            id="webSiteLink" placeholder="Enter Website Link"/>
-
                                     <div *ngIf="(webSiteLink.invalid && webSiteLink.touched)" class="col-lg-12">
                                         <div *ngIf="webSiteLink.errors?.pattern">
                                             <p class="mt-2 text-danger">Only Caracters Can Be Accepted</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -313,23 +298,35 @@
                                     <input type="text" class="form-control "
                                            formControlName="linkedinUrl" name="linkedinUrl"
                                            id="linkedinUrl" placeholder="Enter Linkedin Url"/>
-
                                     <div *ngIf="(linkedinUrl.invalid && linkedinUrl.touched)" class="col-lg-12">
                                         <div *ngIf="linkedinUrl.errors?.pattern">
                                             <p class="mt-2 text-danger">Only Caracters Can Be Accepted</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-2 btns">
                                 <div>
                                     <a class="btn btn-previous" (click)="previous()">
-                      <span class="icon icon-info">
-                        <i class="tim-icons icon-minimal-left"></i>
-                      </span>
+                                        <span class="icon icon-info">
+                                            <i class="tim-icons icon-minimal-left"></i>
+                                        </span>
                                     </a>
                                 </div>
+                                <ngx-recaptcha2
+                                    #captchaElem
+                                    [siteKey]="recaptchaSecret"
+                                    [size]="captchaSize"
+                                    [hl]="captchaLang"
+                                    [type]="captchaType"
+                                    [theme]="captchaTheme"
+                                    (success)="handleCaptchaSuccess($event)"
+                                    (reset)="handleCaptchaReset()"
+                                    (expire)="handleCaptchaExpire()"
+                                    (load)="handleCaptchaLoad()"
+                                    formControlName="recaptcha"
+                                >
+                                </ngx-recaptcha2>
                                 <div>
                                     <button [disabled]="registerform.invalid" type="submit" class="btn btn-after">
                                         Send Rental Request

@@ -5,12 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { JoinUsComponent } from './pages/joinus/join-us.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import {HomeComponent} from "./pages/home/home.component";
-import {HeaderComponent} from "./pages/header/header.component";
+import {HomeComponent} from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'header', component: HeaderComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: HomeComponent },
   { path: 'services', component: HomeComponent },

@@ -45,6 +45,7 @@
     "ng-marquee": "^9.5.0",
     "ng-stepper": "0.0.1",
     "ngx-bootstrap": "6.2.0",
+    "ngx-captcha": "^10.0.0",
     "ngx-toastr": "^13.2.0",
     "nouislider": "14.6.3",
     "rxjs": "6.6.3",

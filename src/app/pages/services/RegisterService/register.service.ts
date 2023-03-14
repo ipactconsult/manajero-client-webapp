@@ -2,13 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthUser } from '../models/AuthUser';
-import { User } from '../models/user';
+import { AuthUser } from '../../models/AuthUser';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class RegisterService {
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,9 +19,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  sendRequest(user:User): Observable<User> {
-     return this.http.post<User>(environment.apiRequest+'api/v1/rentalRequest/sendRequest', user, this.httpOptions);
-  }
+
 
   register(auth : AuthUser): Observable<AuthUser> {
     return this.http.post<AuthUser>(environment.apiRegister+'api/auth/signup' ,auth, this.httpOptions);
@@ -31,8 +29,8 @@ export class UserService {
     return this.http.get<boolean>(environment.apiRegister+'api/auth/validateToken/'+token , this.httpOptions);
   }
 
-  refreshToken(email: string): Observable<boolean> {
-    return this.http.get<boolean>(environment.apiRequest+'rentalRequest/refreshToken/'+email , this.httpOptions);
+  refreshToken(email: string) {
+    return this.http.get(environment.apiRegister+'api/auth/generateToken/'+email , this.httpOptions);
   }
 
 }

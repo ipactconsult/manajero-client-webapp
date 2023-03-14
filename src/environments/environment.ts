@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiRequest: 'http://localhost:8092/',
   apiRegister:'http://localhost:8070/',
+  captchaKey : '6LcOAP4kAAAAAHaQf-kv9WbmFvKmAOc44qIG2QoK',
   };
 
 /*
